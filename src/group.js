@@ -48,7 +48,8 @@ router.post('/:groupId/join_as', (req, res) => {
     const userId = uuid()
 
     const group = groups[groupId]
-    group.users[userId] = { username, preferences: [] }
+    // TODO Dummy data being entered!
+    group.users[userId] = { username, preferences: ['Wordsmith\'s'] }
 
     res.json(
         {
@@ -75,6 +76,25 @@ router.delete('/:groupId/:userId', (req, res) => {
             message: 'Removed user from group'
         }
     )
+})
+
+router.get('/:groupId/preferences', (req, res) => {
+    const groupId = req.params.groupId
+    const group = groups[groupId]
+    const preferences = []
+    for (const user in group.users) {
+        const userPreferences = group.users[user].preferences
+        for (const preference of userPreferences) {
+            preferences.push(
+                {
+                    user,
+                    preference
+                }
+            )
+        }
+        console.log(preferences)
+    }
+    res.json(preferences)
 })
 
 module.exports = { group: router, group_test_router }
