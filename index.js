@@ -14,7 +14,9 @@ const start = (port) => {
     app.use(express.urlencoded({ extended: false }))
 
     app.use('/api_v1', apiV1)
-    app.use('/test_api', testApi)
+    if (process.env.TEST_API) {
+        app.use('/test_api', testApi)
+    }
 
     app.listen(port, () => {
         console.log(chalk.greenBright(`Listening on port ${port}!`))

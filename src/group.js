@@ -6,7 +6,6 @@ const group_test_router = express.Router()
 
 const groups = {}
 
-//TODO hide test_apis through yargs on final release
 group_test_router.get('/', (req, res) => {
     res.json(groups)
 })
