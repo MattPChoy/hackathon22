@@ -92,8 +92,15 @@ router.get('/:groupId/preferences', (req, res) => {
                 }
             )
         }
-        console.log(preferences)
     }
+    res.json(preferences)
+})
+
+router.get('/:groupId/preferences/:userId', (req, res) => {
+    const groupId = req.params.groupId
+    const userId = req.params.userId
+    const group = groups[groupId]
+    const preferences = group.users[userId].preferences
     res.json(preferences)
 })
 
