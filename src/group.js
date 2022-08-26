@@ -48,8 +48,7 @@ router.post('/:groupId/join_as', (req, res) => {
     const userId = uuid()
 
     const group = groups[groupId]
-    // TODO Dummy data being entered!
-    group.users[userId] = { username, preferences: ['Wordsmith\'s'] }
+    group.users[userId] = { username, preferences: [] }
 
     res.json(
         {
@@ -96,12 +95,27 @@ router.get('/:groupId/preferences', (req, res) => {
     res.json(preferences)
 })
 
-router.get('/:groupId/preferences/:userId', (req, res) => {
+router.get('/:groupId/:userId/preferences', (req, res) => {
     const groupId = req.params.groupId
     const userId = req.params.userId
     const group = groups[groupId]
     const preferences = group.users[userId].preferences
     res.json(preferences)
+})
+
+router.put('/:groupId/:userId/preferences/add', (req, res) => {
+    const groupId = req.params.groupId
+    const userId = req.params.userId
+    const preference = req.body
+    const group = groups[groupId]
+    const preferences = group.users[userId].preferences
+    preferences.push(preference)
+    res.json(
+        {
+            preferences,
+            message: 'Successfully added preferences'
+        }
+    )
 })
 
 module.exports = { group: router, group_test_router }

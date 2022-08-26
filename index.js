@@ -12,6 +12,7 @@ const start = (port) => {
 
     app.use(express.static('frontend/build'))
     app.use(express.urlencoded({ extended: false }))
+    app.use(express.json())
 
     app.use('/api_v1', apiV1)
     if (process.env.TEST_API) {
