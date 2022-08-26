@@ -15,23 +15,37 @@ const start = (port) => {
     app.post('/api_v1/group/:groupId/join_as', (req, res) => {
         const groupId = req.params.groupId
         const username = req.query.name
-        res.status(200)
-            .json(
+        res.json(
                 {
                     username,
                     groupId,
-                    user_id: uuid()
+                    user_id: uuid(),
+                    message: 'Successfully added user to group'
                 }
             )
     })
 
+    // The query string at the end is of the form ?name={name}
     app.post('/api_v1/group/create', (req, res) => {
         const groupName = req.query.name
-        res.status(200)
-            .json(
+        res.json(
             {
                 groupName,
-                groupId: uuid()
+                groupId: uuid(),
+                message: 'Successfully created group'
+            }
+        )
+    })
+
+    // Any query string is ignored
+    app.delete('/api_v1/group/:groupId/:userId', (req, res) => {
+        const groupId = req.params.groupId
+        const userId = req.params.userId
+        res.json(
+            {
+                groupId,
+                userId,
+                message: 'Removed user from group'
             }
         )
     })
