@@ -13,6 +13,17 @@ const start = (port) => {
 
     const groups = {}
 
+    //TODO hide test_apis through yargs on final release
+    app.get('/test_api/group/', (req, res) => {
+        res.json(groups)
+    })
+
+    app.get('/test_api/group/:id', (req, res) => {
+        const groupId = req.params.id
+        const group = groups[groupId]
+        res.json(group)
+    })
+
     // The query string at the end is of the form ?name={name}&as_user={name}
     app.post('/api_v1/group/create', (req, res) => {
         const groupName = req.query.name
