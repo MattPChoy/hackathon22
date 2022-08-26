@@ -106,6 +106,7 @@ router.get('/:groupId/:userId/preferences', (req, res) => {
 router.put('/:groupId/:userId/preferences/add', (req, res) => {
     const groupId = req.params.groupId
     const userId = req.params.userId
+    //TODO enforce preference structure from user
     const preference = req.body
     const group = groups[groupId]
     const preferences = group.users[userId].preferences
