@@ -210,6 +210,27 @@
               and the state of the group data will not be modified, and no other fields will be present.</p>
             </section>
 
+            <section id="users">
+              <h4>Get Users</h4>
+              <code><b>GET</b> /api_v1/group/:groupId/users</code>
+              <p>This will return an array containing the details of each member of the group</p>
+              <p>The JSON response packet has the following structure:</p>
+<pre class=".pre-scrollable"><code class="language-json">[
+    {
+        "user": "9c7b6fc8-8ca8-4407-ab23-43639a722fa5",
+        "username": "name1",
+        "admin": true
+    },
+    {
+        "user": "87113434-bad2-4d6a-b982-e0f7b4c68f36",
+        "username": "name2",
+        "admin": false
+    }
+]</code></pre>
+              <p>The returned array will contain a series of elements detailing the members of the group. Each element consists of 3 elements, <code>user</code> details the UUID of the user.
+              <code>username</code> gives the name of the specified member. Finally, <code>admin</code> is a boolean representing whether this user is the creator of the group or not.</p>
+            </section>
+
             <section id="group-preferences">
               <h4>Group Preferences</h4>
               <code><b>GET</b> /api_v1/group/:groupId/preferences</code>

@@ -16,6 +16,22 @@ group_test_router.get('/:id', (req, res) => {
     res.json(group)
 })
 
+router.get('/:groupId/users', (req, res) => {
+    const groupId = req.params.groupId
+    const group = groups[groupId]
+    const users = []
+    for (const user in group.users) {
+        users.push(
+            {
+                user,
+                username: group.users[user].username,
+                admin: group.admin === user
+            }
+        )
+    }
+    res.json(users)
+})
+
 // The query string at the end is of the form ?name={name}&as_user={name}
 router.post('/create', (req, res) => {
     const groupName = req.query.name
