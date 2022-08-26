@@ -15,7 +15,25 @@ const start = (port) => {
     app.post('/api_v1/group/:groupId/join_as', (req, res) => {
         const groupId = req.params.groupId
         const username = req.query.name
-        res.status(200).json({ username, groupId, user_id: uuid() })
+        res.status(200)
+            .json(
+                {
+                    username,
+                    groupId,
+                    user_id: uuid()
+                }
+            )
+    })
+
+    app.post('/api_v1/group/create', (req, res) => {
+        const groupName = req.query.name
+        res.status(200)
+            .json(
+            {
+                groupName,
+                groupId: uuid()
+            }
+        )
     })
 
     app.listen(port, () => {
