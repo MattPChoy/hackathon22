@@ -8,6 +8,7 @@ const group_test_router = express.Router()
 const { User, Group, groups } = require('./model/Group')()
 
 const { Chat } = require('./chat')
+const { generateInviteLink } = require('./invitecodes')
 
 group_test_router.get('/', (req, res) => {
     res.json(groups)
@@ -52,6 +53,7 @@ router.post('/create', (req, res) => {
                 {
                     groupName,
                     groupId: group.groupId,
+                    inviteLink: generateInviteLink(group.groupId),
                     admin: {userId, username},
                     users,
                     message: 'Successfully created group'

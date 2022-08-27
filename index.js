@@ -28,6 +28,8 @@ const start = (port) => {
         app.use('/test_api', testApi)
     }
 
+    require('./src/invitecodes').initialize()
+
     databaseConnect().then(() => {
         console.log(chalk.greenBright(`Database successfully connected!`))
     }).catch(err => {

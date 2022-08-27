@@ -23,7 +23,7 @@ export default class DataScreen extends React.Component {
                 <Button>Build a CafMap</Button>
             </Stack>
             <Stack direction="column" spacing={2}>
-                <Link mapName={this.props.location.state.groupName} link={'TODO'}/>
+                <Link mapName={this.props.location.state.groupName} link={this.props.location.state.inviteLink}/>
                 <MapWindow/>
             </Stack>
             <ChatWindow groupId={this.props.location.state.groupId} userId={this.props.location.state.admin.userId}/>
