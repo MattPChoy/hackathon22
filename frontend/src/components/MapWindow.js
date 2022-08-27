@@ -1,24 +1,24 @@
-import React from 'react';
-import * as ReactDOM from "react-dom";
-import { MapsComponent, LayersDirective, LayerDirective, Zoom, Inject } from '@syncfusion/ej2-react-maps';
+import { Component } from "react";
+import {Map, GoogleApiWrapper} from "google-maps-react"
 
-export default class MapWindow extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render(status: Status) {
-        return (
-            <div>
-            <MapsComponent id="maps" zoomSettings={{ enable: true, toolbars: ['Zoom', 'ZoomIn', 'ZoomOut', 'Pan', 'Reset'] }}>
-                        <Inject services={[Zoom]}/>
-                            <LayersDirective>
-                                <LayerDirective urlTemplate='https://tile.openstreetmap.org/level/tileX/tileY.png'/>
-                            </LayersDirective>
-                        </MapsComponent>
-            <h1>{status}</h1>
-            </div>
+class MapContainer extends Component {
+    render() {
+        return(
+            <Map
+                google = {this.props.google}
+                style = {{width:"66%", height:"30%"}}
+                zoom = {15}
+                initialCenter = {
+                    {
+                        lat: -27.496825810386085,
+                        lng: 153.01332710033705
+                    }
+                }
+            />
         )
-
     }
-} 
+}
+
+export default GoogleApiWrapper({
+    apiKey: "AIzaSyB6TpPhJcp6ry3r5QGKBh7YN_AIIcTUqVw"
+})(MapContainer)
