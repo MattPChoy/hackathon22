@@ -20,12 +20,12 @@ export default class Selection extends React.Component {
                         <TextField id="join-code" label="Map Name" variant="filled"/>
                         <h3>Your Name:</h3>
                         <TextField id="join-code" label="User Name" variant="filled"/>
+                        <Button variant="outlined" id="join-btn">Create CafMap</Button>
                     </Stack>
                     <Stack direction="column" spacing={2}>
                         <h3>You Must Enter 1 location to start your CafMap</h3>
                         <MapWindow/>
                     </Stack>
-                    <Button variant="outlined" id="join-btn">Create CafMap</Button>
                 </Stack>
             </Stack>
         )

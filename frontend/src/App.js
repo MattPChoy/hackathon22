@@ -2,7 +2,6 @@ import coffee_top from "./assets/images/coffee-top.png"
 
 import Loading from "./components/Loading"
 import Selection from "./components/Selection"
-import Data from "./components/Data"
 import Invite from "./components/Invite"
 import Create from "./components/Create"
 import Map from "./components/Map"
@@ -27,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-         <Selection />
+         <Invite />
       </header>
     </div>
   );

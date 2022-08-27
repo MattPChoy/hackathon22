@@ -15,8 +15,11 @@ export default class Selection extends React.Component {
                 <Box component="form">
                     <TextField id="join-code" label="Join Code" variant="filled"/>
                 </Box>
-                <Button variant="outlined" id="create-btn">Join Map</Button>
-                <Button variant="outlined" id="join-btn">No Code? Create Event</Button>
+                <Box component="form">
+                    <TextField id="user-name" label="User Name" variant="filled"/>
+                </Box>
+                <Button variant="outlined" id="join-btn">Join Map</Button>
+                <Button variant="outlined" id="create-btn">No Code? Create Event</Button>
             </Stack>
         )
     }
