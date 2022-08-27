@@ -14,7 +14,7 @@ export default function AlignItemsList(props) {
             <box>
                 <ListItem alignItems="flex-start">
                     <ListItemAvatar>
-                        <!--TODO add the ability to set colours somehow -->
+                        {/*TODO add the ability to set colours somehow */}
                         <Avatar  sx={{ bgcolor: 'green' }}> {message.username[0]} </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary={message.message}/>

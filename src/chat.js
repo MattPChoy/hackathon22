@@ -7,19 +7,16 @@ const initialize = (server) => {
         socket.on('chat message', messagePacket => {
             const {msg, groupId, userId} = messagePacket
             chats[groupId].sendMessage({msg, userId})
-            console.log('message')
         })
         socket.on('user connected', info => {
             const {userId, groupId, username} = info
             chats[groupId].sendUserConnected(userId, username)
 
             chats[groupId].addUser(userId, username, socket)
-            console.log('connect')
         })
         socket.on('user disconnected', info => {
             const {userId, groupId} = info
             chats[groupId].sendUserDisconnected(userId)
-            console.log('disconnect')
         })
     })
     io.listen(server)

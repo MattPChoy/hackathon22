@@ -10,6 +10,7 @@ import * as ReactDOM from "react-dom";
 import { MapsComponent, LayersDirective, LayerDirective, Zoom, Inject } from '@syncfusion/ej2-react-maps';
 
 import socketio from "socket.io-client"
+import axios from "axios"
 
 export default class DataScreen extends React.Component {
     constructor(props) {
@@ -36,6 +37,7 @@ export default class DataScreen extends React.Component {
             users: newUsers,
             chat: this.state.chat
         })
+        axios.delete(`/api_v1/group/${this.props.location.state.group.groupId}/${this.props.location.state.userId}`)
     }
 
     updateChatAddMessage = (username, message) => {
