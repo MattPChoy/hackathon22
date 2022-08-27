@@ -2,6 +2,8 @@ import coffee_top from "./assets/images/coffee-top.png"
 
 import Loading from "./components/Loading"
 import Selection from "./components/Selection"
+import Join from "./components/Join"
+import DataScreen from "./components/Data"
 
 import Button from '@mui/material/Button';
 import './App.css';
@@ -21,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-         <Selection />
+         <DataScreen />
       </header>
     </div>
   );
