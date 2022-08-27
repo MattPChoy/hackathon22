@@ -8,16 +8,30 @@ const group_test_router = express.Router()
 const { User, Group, groups } = require('./model/Group')()
 
 const { Chat } = require('./chat')
-const { generateInviteLink } = require('./invitecodes')
+const { generateInviteLink, getGroupId } = require('./invitecodes')
 
 group_test_router.get('/', (req, res) => {
     res.json(groups)
 })
 
-group_test_router.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const groupId = req.params.id
     const group = Group.getGroupById(groupId)
     res.json(group)
+})
+
+router.get('/invite/:code', (req, res) => {
+    const inviteCode = req.params.code
+    const groupId = getGroupId(inviteCode)
+    const group = Group.getGroupById(groupId)
+    res.json({
+        groupName: group.groupName,
+        groupId: group.groupId,
+        inviteLink: inviteCode,
+        admin: { userId: group.admin, username: group.getUser(group.admin).name },
+        users: group.users,
+        message: 'Successfully followed invite link'
+    })
 })
 
 router.get('/:groupId/users', (req, res) => {

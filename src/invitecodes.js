@@ -16,8 +16,12 @@ const generateInviteLink = (groupId) => {
     const index = Math.floor(Math.random() * len)
     const link = words[index]
     words.splice(index, 1)
-    usedLinks[groupId] = groupId
+    usedLinks[link] = groupId
     return link
 }
 
-module.exports = { initialize, generateInviteLink }
+const getGroupId = (inviteCode) => {
+    return usedLinks[inviteCode]
+}
+
+module.exports = { initialize, generateInviteLink, getGroupId }

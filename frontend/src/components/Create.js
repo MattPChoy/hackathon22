@@ -18,7 +18,8 @@ export default class Selection extends React.Component {
 
     reset() {
         this.state = {
-            mapName: ''
+            mapName: '',
+            userName: ''
         }
     }
 
