@@ -27,3 +27,4 @@ then
 fi
 
 echo "Server successfully initialised, run 'node index.js listen <port_number>' to start the webserver!"
+exit 0
