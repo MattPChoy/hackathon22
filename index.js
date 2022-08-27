@@ -35,7 +35,9 @@ const start = (port) => {
     const io = require('socket.io')(server)
     io.on('connection', (socket) => {
         socket.emit('Hello from the server')
-        console.log('!')
+        socket.on('chat message', msg => {
+            io.emit('chat message', msg)
+        })
     })
 
     server.listen(port, () => {
