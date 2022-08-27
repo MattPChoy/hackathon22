@@ -1,18 +1,65 @@
 const mongoose = require("mongoose")
 const {v4: uuid} = require('uuid')
 
-cafes = {}
+let cafes = {}
 
 let MenuModel = undefined
 let CafeModel = undefined
 
 class Menu {
+    constructor(
+        coffees,
+        milkVariants
+    ) {
+        this.coffees = coffees
+        this.milkVariants = milkVariants
+    }
 
+    toModel = () => {
+        return {
+            coffees: this.coffees,
+            milkVariants: this.milkVariants
+        }
+    }
 }
 
 class Cafe {
-    constructor() {
+    constructor(
+        name,
+        menu,
+        geoCoords,
+        streetAddress,
+        reviews,
+        supports
+    ) {
+        this.name = name
+        this.id = uuid()
+        this.menu = menu
+        this.geoCoords = geoCoords
+        this.streetAdress = streetAddress
+        this.reviews = reviews
+        this.supports = supports
+        cafes[this.id] = this
+    }
 
+    static getCafeById = (id) => {
+        return cafes[id]
+    }
+
+    sync = async() => {
+        CafeModel.findOneAndReplace(
+            {cafeId: this.id},
+            {
+                name: this.name,
+                cafeId: this.id,
+                menu: this.menu.toModel(),
+                geoCoords: this.geoCoords,
+                streetAddress: this.streetAdress,
+                reviews: this.reviews,
+                supports: this.supports
+            },
+            {upsert: true, new: true, setDefaultsOnInsert: true}
+        ).exec()
     }
 }
 
@@ -41,7 +88,7 @@ const initialize = () => {
 
     const CafeSchema = new Schema({
         name: String,
-        cafeId: String,
+        cafeId: {type: String, unique: true},
         menu: MenuSchema,
         geoCoords: {
             longitude: Number,
@@ -64,5 +111,7 @@ const initialize = () => {
     })
     CafeModel = mongoose.model('Cafe', CafeSchema)
 
-    return { User, Group, cafes }
+    return { Menu, Cafe, cafes }
 }
+
+module.exports = initialize
