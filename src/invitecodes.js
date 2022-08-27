@@ -5,7 +5,8 @@ let words = []
 const initialize = () => {
     const fs = require('fs')
     const chalk = require("chalk");
-    words = fs.readFileSync('./resources/wordle.txt').toString().trim().split('\r\n')
+    words = fs.readFileSync('./resources/wordle.txt').toString().trim().split('\n')
+    words = words.map(word => word.trim())
     console.log(chalk.greenBright('Successfully loaded words for invite links'))
 
     return { generateInviteLink }
