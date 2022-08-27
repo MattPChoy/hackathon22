@@ -5,8 +5,10 @@ import socketio from "socket.io-client"
 const io = socketio.connect()
 
 export default class Chat extends React.Component {
-    constructor() {
+    constructor(groupId, userId) {
         super()
+        this.groupId = groupId
+        this.userId = userId
         setInterval(() => {
             this.send('Message :)')
         }, 5000)
@@ -22,12 +24,13 @@ export default class Chat extends React.Component {
     }
 
     send(msg) {
-        io.emit('chat message', msg)
+        io.emit('chat message', { msg, groupId: this.groupId, userId: this.userId })
     }
 
     onMessageReceive(messageCallback){
         io.on('chat message', (msg) => {
-            messageCallback(msg)
+            const {userId, message} = msg
+            messageCallback(userId, message)
         })
     }
 }

@@ -4,6 +4,8 @@ require('dotenv').config()
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 
+const { initialize: chatInitialize } = require('./src/chat')
+
 const apiV1 = require('./src/api_v1')
 const testApi = require('./src/test_api')
 
@@ -32,13 +34,7 @@ const start = (port) => {
         console.log(chalk.bgRedBright(chalk.black(`Database failed to connect! With error: \n${err.toString()}`)))
     })
 
-    const io = require('socket.io')(server)
-    io.on('connection', (socket) => {
-        socket.emit('Hello from the server')
-        socket.on('chat message', msg => {
-            io.emit('chat message', msg)
-        })
-    })
+    chatInitialize(server)
 
     server.listen(port, () => {
         console.log(chalk.greenBright(`Listening on port ${port}!`))
