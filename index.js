@@ -7,6 +7,12 @@ const { hideBin } = require('yargs/helpers')
 const apiV1 = require('./src/api_v1')
 const testApi = require('./src/test_api')
 
+const mongoose = require('mongoose')
+
+databaseConnect = async () => {
+    await mongoose.connect(process.env.MONGO_API_KEY)
+}
+
 const start = (port) => {
     const app = new express()
 
@@ -18,6 +24,12 @@ const start = (port) => {
     if (process.env.TEST_API) {
         app.use('/test_api', testApi)
     }
+
+    databaseConnect().then(() => {
+        console.log(chalk.greenBright(`Database successfully connected!`))
+    }).catch(err => {
+        console.log(chalk.bgRedBright(chalk.black(`Database failed to connect! With error: \n${err.toString()}`)))
+    })
 
     app.listen(port, () => {
         console.log(chalk.greenBright(`Listening on port ${port}!`))
