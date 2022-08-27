@@ -51,15 +51,18 @@ class Group {
     }
 
     sync = async () => {
-        const group = new GroupModel({
-            groupId: this.groupId,
-            groupName: this.groupName,
-            admin: this.admin,
-            users: Object.keys(this.users).map((userId, _i, users) =>
+        GroupModel.findOneAndReplace(
+            { groupId: this.groupId },
+            {
+                groupId: this.groupId,
+                groupName: this.groupName,
+                admin: this.admin,
+                users: Object.keys(this.users).map((userId, _i, users) =>
                     User.getUserById(this.groupId, userId).toModel()
-            )
-        })
-        await group.save()
+                )
+            },
+            {upsert: true, new: true, setDefaultsOnInsert: true}
+        ).exec()
     }
 
     static getGroupById = (groupId) => {
@@ -72,12 +75,12 @@ const initialize = () => {
 
     const UserSchema = new Schema({
         username: String,
-        userId: String
+        userId: { type: String, index: true }
     })
     UserModel = mongoose.model('User', UserSchema)
 
     const GroupSchema = new Schema({
-        groupId: String,
+        groupId: { type: String, index: true } ,
         groupName: String,
         admin: String,
         users: [UserSchema]

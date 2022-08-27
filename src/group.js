@@ -102,6 +102,7 @@ router.delete('/:groupId/:userId', (req, res) => {
 
     const group = Group.getGroupById(groupId)
     group.removeUser(userId)
+    group.sync()
 
     res.json(
         {
