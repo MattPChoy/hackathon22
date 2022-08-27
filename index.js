@@ -15,6 +15,7 @@ databaseConnect = async () => {
 
 const start = (port) => {
     const app = new express()
+    const server = require('http').createServer(app)
 
     app.use(express.static('frontend/build'))
     app.use(express.urlencoded({ extended: false }))
@@ -31,7 +32,13 @@ const start = (port) => {
         console.log(chalk.bgRedBright(chalk.black(`Database failed to connect! With error: \n${err.toString()}`)))
     })
 
-    app.listen(port, () => {
+    const io = require('socket.io')(server)
+    io.on('connection', (socket) => {
+        socket.emit('Hello from the server')
+        console.log('!')
+    })
+
+    server.listen(port, () => {
         console.log(chalk.greenBright(`Listening on port ${port}!`))
     })
 }
