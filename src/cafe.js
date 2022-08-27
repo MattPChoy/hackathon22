@@ -40,7 +40,6 @@ router.post('/create', (req, res) => {
             message: 'Cafe successfully created'
         }
     )
-
 })
 
 module.exports = { cafe: router, cafe_test_router: test_router }
