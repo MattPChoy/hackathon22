@@ -32,6 +32,8 @@ function App() {
                   <Switch>
                       <Route path="/" component={Main} exact/>
                       <Route path="/select" component={Selection}/>
+                      <Route path="/create" component={Create}/>
+                      <Route path='/invite' component={Invite}></Route>
                   </Switch>
               </header>
           </div>

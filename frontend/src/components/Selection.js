@@ -4,6 +4,8 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
+import {NavLink} from 'react-router-dom'
+
 export default class Selection extends React.Component {
     constructor(props) {
         super(props);
@@ -19,7 +21,7 @@ export default class Selection extends React.Component {
                     <TextField id="user-name" label="User Name" variant="filled"/>
                 </Box>
                 <Button variant="outlined" id="join-btn">Join Map</Button>
-                <Button variant="outlined" id="create-btn">No Code? Create Event</Button>
+                <NavLink to='/create'><Button variant="outlined" id="create-btn">No Code? Create Event</Button></NavLink>
             </Stack>
         )
     }
