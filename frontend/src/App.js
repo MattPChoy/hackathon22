@@ -8,6 +8,8 @@ import Map from "./components/Map"
 import MapWindow from "./components/MapWindow"
 import Main from "./components/Main"
 
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import Button from '@mui/material/Button';
 import './App.css';
 import React from 'react';
@@ -24,11 +26,16 @@ import React from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-         <Main />
-      </header>
-    </div>
+      <BrowserRouter>
+          <div className="App">
+              <header className="App-header">
+                  <Switch>
+                      <Route path="/" component={Main} exact/>
+                      <Route path="/select" component={Selection}/>
+                  </Switch>
+              </header>
+          </div>
+      </BrowserRouter>
   );
 }
 
