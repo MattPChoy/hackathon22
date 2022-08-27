@@ -5,6 +5,7 @@ import Link from "./InvComp/Link";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import MapWindow from "./MapWindow";
+import ChatWindow from "./MapComp/ChatWindow"
 import * as ReactDOM from "react-dom";
 import { MapsComponent, LayersDirective, LayerDirective, Zoom, Inject } from '@syncfusion/ej2-react-maps';
 
@@ -24,6 +25,7 @@ export default class DataScreen extends React.Component {
                 <Link/>
                 <MapWindow/>
             </Stack>
+            <ChatWindow/>
         </Stack>
         )
     }
