@@ -48,17 +48,15 @@ export default class Selection extends React.Component {
                         <TextField id="map-name" value={this.state.mapName} onChange={evt => this.updateMapName(evt)} label="Map Name" variant="filled"/>
                         <h3>Your Name:</h3>
                         <TextField id="your-name" value={this.state.userName} onChange={evt => this.updateUserName(evt)} label="User Name" variant="filled"/>
-                        <NavLink to="/invite"><Button onClick={(event) => {
+                        <Button onClick={(event) => {
                             axios.post(
                                 `/api_v1/group/create?name=${this.state.mapName}&as_user=${this.state.userName}`
                             ).then((response) => {
-                                console.log(response)
+                                this.props.history.push("/invite", response.data)
                             }).catch((err) => {
-                                console.log('Oh no :(')
-                                console.log(err)
+                                console.error(err)
                             })
                         }} variant="outlined" id="join-btn">Create CafMap</Button>
-                        </NavLink>
                     </Stack>
                     <Stack direction="column" spacing={2}>
                         <h3 style={{display: 'none'}}>You Must Enter 1 location to start your CafMap</h3>

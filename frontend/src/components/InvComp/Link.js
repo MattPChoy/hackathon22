@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Link() {
-    const link = 'ABC123'
-    const map_name = "Jack's Coffee at 3"
+export default function Link(props) {
+    const link = props.link
+    const map_name = props.mapName
     return (
         <div>
             <p>Invite your friends to {map_name} with: {link}</p>

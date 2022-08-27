@@ -1,9 +1,10 @@
 import React from 'react'
+import ChatClass from '../ChatClass'
 
 export default function ChatWindow() {
   return (
     <div>
-      <h3>Chat Feature</h3>
+      <ChatClass />
       <h3>Comment Out</h3>
     </div>
   )

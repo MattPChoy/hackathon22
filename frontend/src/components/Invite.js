@@ -12,17 +12,18 @@ import { MapsComponent, LayersDirective, LayerDirective, Zoom, Inject } from '@s
 export default class DataScreen extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props.location.state)
         //const Map: React.FC<{}> = () => {};
     }
     render() {
         return (
             <Stack direction="row" spacing={2}>
             <Stack direction="column" spacing={2}>
-                <UserList/>
+                <UserList users={this.props.location.state.users}/>
                 <Button>Build a CafMap</Button>
             </Stack>
             <Stack direction="column" spacing={2}>
-                <Link/>
+                <Link mapName={this.props.location.state.groupName} link={'TODO'}/>
                 <MapWindow/>
             </Stack>
             <ChatWindow/>
