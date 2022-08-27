@@ -4,6 +4,7 @@ import Loading from "./components/Loading"
 import Selection from "./components/Selection"
 import Join from "./components/Join"
 import DataScreen from "./components/Data"
+import Invite from "./components/Invite"
 
 import Button from '@mui/material/Button';
 import './App.css';
@@ -23,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-         <DataScreen />
+         <Invite />
       </header>
     </div>
   );
