@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 
 
 export default function UserList() {
-    const users =  ['Jack','Amy','Phil','Sally']
+    const users =  ['Jack','Amy','Phil','Sally','Mark']
     return (
         <div>
             <h1>Friends:</h1>

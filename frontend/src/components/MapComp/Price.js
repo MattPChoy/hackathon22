@@ -6,7 +6,7 @@ export default function Price() {
     var price = 100
   return (
         <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Max Price</InputLabel>
+            <InputLabel id="demo-simple-select-label">Price</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"

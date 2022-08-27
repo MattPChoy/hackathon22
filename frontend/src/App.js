@@ -8,6 +8,7 @@ import Invite from "./components/Invite"
 import Create from "./components/Create"
 import Map from "./components/Map"
 import MapWindow from "./components/MapWindow"
+import Main from "./components/Main"
 
 import Button from '@mui/material/Button';
 import './App.css';
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-         <MapWindow />
+         <Main />
       </header>
     </div>
   );

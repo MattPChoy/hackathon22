@@ -4,7 +4,8 @@ import Link from "./InvComp/Link";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Shops from './MapComp/Shops';
-import Chat from './MapComp/Chat';
+import MapWindow from "./MapWindow";
+import ChatWindow from "./MapComp/ChatWindow";
 
 export default class DataScreen extends React.Component {
     constructor(props) {
@@ -18,8 +19,8 @@ export default class DataScreen extends React.Component {
                 <h1>{map_name}</h1>
                 <Stack direction="row" spacing={2}>
                     <Shops/>
-                    <h1>MAP HERE</h1>
-                    <Chat/>
+                    <MapWindow/>
+                    <ChatWindow/>
                 </Stack>
             </Stack>
         );

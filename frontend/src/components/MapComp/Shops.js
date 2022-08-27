@@ -14,6 +14,8 @@ export default function Shops() {
         <Rating/>
         <Open/>
       </Stack>
+      <h3>List Of Optimal Shops</h3>
+      <h3> w/ details ???</h3>
     </div>
   )
 }
