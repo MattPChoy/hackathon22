@@ -6,6 +6,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ChatBox from './ChatBox'
 
+
 //{[{mess: "Food Time XD", user: "Jack", colour: 'red'},
 //{mess: "Merlo for sure!", user: 'Phil', colour: 'orange'},
 //{mess: "I'll be late, sorry!", user: 'Sally', colour: 'purple'},{mess: "Food Time XD", user: "Jack", colour: 'red'},
@@ -52,3 +53,4 @@ export default class ChatWindow extends React.Component {
         )
     }
 }
+

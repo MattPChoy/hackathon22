@@ -7,6 +7,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
+
 export default function AlignItemsList(props) {
     let messages = props.messages
     return (
@@ -23,3 +24,4 @@ export default function AlignItemsList(props) {
         ))
     );
 }
+
