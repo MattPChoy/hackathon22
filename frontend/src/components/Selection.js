@@ -1,6 +1,8 @@
 import React from "react";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export default class Selection extends React.Component {
     constructor(props) {
@@ -9,9 +11,12 @@ export default class Selection extends React.Component {
 
     render() {
         return (
-            <Stack direction="column" spacing={2}>
-                <Button variant="outlined" id="create-btn">Create Event</Button>
-                <Button variant="outlined" id="join-btn">Join Event</Button>
+            <Stack direction="column"  spacing={2}>
+                <Box component="form">
+                    <TextField id="join-code" label="Join Code" variant="filled"/>
+                </Box>
+                <Button variant="outlined" id="create-btn">Join Map</Button>
+                <Button variant="outlined" id="join-btn">No Code? Create Event</Button>
             </Stack>
         )
     }
