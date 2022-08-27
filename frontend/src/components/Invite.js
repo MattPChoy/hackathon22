@@ -14,6 +14,9 @@ export default class DataScreen extends React.Component {
     constructor(props) {
         super(props);
         //const Map: React.FC<{}> = () => {};
+        this.state = {
+            users: this.props.location.state.users
+        }
     }
 
     render() {
