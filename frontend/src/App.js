@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-         <Main />
+         <Map />
       </header>
     </div>
   );

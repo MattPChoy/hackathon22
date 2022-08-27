@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Price from './Price'
 import Rating from './Rating';
 import Open from './Open';
+import ShopView from './ShopView';
 
 export default function Shops() {
   return (
@@ -14,8 +15,7 @@ export default function Shops() {
         <Rating/>
         <Open/>
       </Stack>
-      <h3>List Of Optimal Shops</h3>
-      <h3> w/ details ???</h3>
+      <ShopView/>
     </div>
   )
 }
