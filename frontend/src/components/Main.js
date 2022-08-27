@@ -17,7 +17,7 @@ export default class DataScreen extends React.Component {
     }
     render() {
         return (
-            <Stack direction="Column" spacing={4}>
+            <Stack direction="Column" spacing={3}>
                 <h1>Welcome to CafMap.com</h1>
                 <NavLink to="/select"><Button><img src={coffee} alt="Coffee logo" width={"20%"} height={"20%"}/></Button></NavLink>
                 <MapWindow/>
