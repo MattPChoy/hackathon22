@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+<link href="assets/images/favicon.png" rel="icon" />
+<title>Documentation | CafMap API</title>
+<meta name="description" content="Your ThemeForest item Name and description">
+<meta name="author" content="harnishdesign.net">
+
+<!-- Stylesheet
+============================== -->
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css" />
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css" />
+<!-- Magnific Popup -->
+<link rel="stylesheet" type="text/css" href="assets/vendor/magnific-popup/magnific-popup.min.css" />
+<!-- Highlight Syntax -->
+<link rel="stylesheet" type="text/css" href="assets/vendor/highlight.js/styles/github.css" />
+<!-- Custom Stylesheet -->
+<link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
+</head>
+
+<body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
+
+<!-- Preloader -->
+<div class="preloader">
+  <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<!-- Preloader End --> 
+
+<!-- Document Wrapper   
+=============================== -->
+<div id="main-wrapper"> 
+  
+  <!-- Header
+  ============================ -->
+  <header id="header" class="sticky-top"> 
+    <!-- Navbar -->
+    <nav class="primary-menu navbar navbar-expand-lg bg-dark navbar-text-light navbar-dropdown-dark border-0">
+      <div class="container-fluid">
+        <!-- Sidebar Toggler -->
+		<button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span class="w-75"></span><span class="w-50"></span></button>
+		
+		<!-- Logo --> 
+        <a class="logo ml-md-3" href="index.html" title="iDocs Template"> <img src="assets/images/logo-light.png" alt="iDocs Template"/> </a> 
+		<span class="text-2 text-light ml-2">v1.0</span> 
+        <!-- Logo End -->
+        
+		<!-- Navbar Toggler -->
+		<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#header-nav"><span></span><span></span><span></span></button>
+        
+		    <div id="header-nav" class="collapse navbar-collapse justify-content-end">
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar End --> 
+  </header>
+  <!-- Header End --> 
+  
+  <!-- Content
+  ============================ -->
+  <div id="content" role="main">
+    
+	<!-- Sidebar Navigation
+	============================ -->
+	<div class="idocs-navigation bg-light">
+      <ul class="nav flex-column ">
+        <li class="nav-item"><a class="nav-link active" href="#installation">Installation</a></li>
+        <li class="nav-item"><a class="nav-link" href="#api">API</a>
+          <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="#groups">Groups</a>
+              <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link" href="#create_group">Create</a></li>
+                <li class="nav-item"><a class="nav-link" href="#join_group">Join As</a></li>
+                <li class="nav-item"><a class="nav-link" href="#remove_user">Remove User</a></li>
+                <li class="nav-item"><a class="nav-link" href="#users">Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="#group-preferences">Group Preferences</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#cafes">Cafes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Docs Content
+	============================ -->
+    <div class="idocs-content">
+      <div class="container"> 
+        
+        <!-- Installation
+		============================ -->
+        <section id="idocs_start">
+        <h1>Documentation</h1>
+        <h2>CafMap Backend Documentation</h2>
+		<hr>
+		<div class="row">
+			<div class="col-sm-6 col-lg-4">
+				<ul class="list-unstyled">
+					<li><strong>Version:</strong> 1.0</li>
+					<li><strong>Author:</strong> <a href="https://github.com/CaptianDynamite" target="_blank">Kaleb Muir</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-6 col-lg-4">
+				<ul class="list-unstyled">
+					<li><strong class="font-weight-700">Created:</strong> 27/08/2022</li>
+					<li><strong>Update:</strong> 27/08/2022</li>
+				</ul>
+			</div>
+		</div>
+        <p class="alert alert-info">If you have any questions that are beyond the scope of this help file, there's not much that can be done.</p>
+        </section>
+        
+		<hr class="divider">
+
+        <section id="installation">
+          <h2>Installation</h2>
+          <p class="lead">Follow the steps below to setup the CafMap server:</p>
+          <ol>
+            <li>Clone or download the git repository into your desired folder.</li>
+            <li>Run the following commands in order:
+              <ol>
+                <li><code> cd &lt;file path that you want> </code></li>
+                <li><code>npm i</code></li>
+                <li><code>cd /frontend</code></li>
+                <li><code>npm i</code></li>
+                <li><code>npm run build</code></li>
+                <li><code>cd ..</code></li>
+                <li><code>touch .env</code></li>
+                <li>Copy the contents of example_prod.env into .env, and make the necessary modifications such as keys</li>
+                <li><code>node index.js listen &lt;desired port></code></li>
+              </ol>
+              <li>The server is up and running!</li>
+          </ol>
+        </section>
+        
+		<hr class="divider">
+		
+        <!-- API
+		============================ -->
+        <section id="api">
+          <h2>API</h2>
+          <p>The API is divided into two main segments, the group and cafe sections</p>
+
+          <section id="groups">
+            <h3>Group</h3>
+            The groups section of the API deals with collections of users.
+            <section id="create_group">
+              <h4>Create</h4>
+              <code><b>POST</b> /api_v1/group/create?name={name}&as_user={name}</code>
+              <p>This API endpoint creates a new group with the specified name, setting the admin to be the user with the given name. Note that names are not unique within the group, and the name of a group does not have to be unique either</p>
+              <p>The JSON response packet looks like the following:</p>
+<pre class=".pre-scrollable"><code class="language-json">{
+    "groupName": "coffee group",
+    "groupId": "dbedd50e-301b-4f97-a132-da1ec57a1cc1",
+    "admin": {
+        "userId": "c72e54c0-bc7b-4e3b-b1c8-8d428437b0df",
+        "username": "kName"
+    },
+    "users": {
+        "c72e54c0-bc7b-4e3b-b1c8-8d428437b0df": {
+            "username": "Name",
+            "preferences": []
+        }
+    },
+    "message": "Successfully created group"
+}</code></pre>
+              <p>The <code>groupName</code> will be identical to the specified name. The <code>groupId</code> is a UUID. The <code>admin</code> object consists of the
+              UUID generated for the user, as well as the name specified by <code>as_user</code>. The <code>users</code> object consists of a map between user UUIDs and
+              a user object consisting of their name and preferences. The message will always be present, it will either indicate success with all fields present, or failure with no other fields present</p>
+            </section>
+
+            <section id="join_group">
+              <h4>Join Group</h4>
+              <code><b>POST</b> /api_v1/:groupId/join_as?name={name}</code>
+              <p>This API endpoint adds the user to the group specified by <code>:groupId</code> with the name that they have chosen, specified by <code>name</code></p>
+              <p>The JSON response packet looks like the following:</p>
+<pre class=".pre-scrollable"><code class="language-json">{
+    "username": "Name",
+    "groupId": "dbedd50e-301b-4f97-a132-da1ec57a1cc1",
+    "userId": "e540f146-4ccd-46ce-935c-61e44fa7bf56",
+    "message": "Successfully added user to group"
+}</code></pre>
+              <p>The <code>username</code> will match the name specified in the query string. The <code>groupId</code> will match <code>:groupId</code> parameter in the URL. The <code>userId</code>
+              packet will contain the UUID for the newly added user. The <code>message</code> will either contain a success message, in which case all other fields will be present, or it will contain an
+              error message in which case no other fields will be present.</p>
+            </section>
+
+            <section id="remove_user">
+              <h4>Remove User</h4>
+              <code><b>DELETE</b> /api_v1/:groupId/:userId </code>
+              <p>This API endpoint will remove the specified user from the specified group.</p>
+              <p>The JSON response packet has the following structure: </p>
+<pre class=".pre-scrollable"><code class="language-json">{
+    "groupId": "dbedd50e-301b-4f97-a132-da1ec57a1cc1",
+    "userId": "e540f146-4ccd-46ce-935c-61e44fa7bf56",
+    "message": "Removed user from group"
+}</code></pre>
+              <p>The <code>groupId</code> and <code>userId</code> match their respective URL parameters. The <code>message</code> will contain either a success message, in which case both fields will be present and the user has been removed, or it will return an error message
+              and the state of the group data will not be modified, and no other fields will be present.</p>
+            </section>
+
+            <section id="users">
+              <h4>Get Users</h4>
+              <code><b>GET</b> /api_v1/group/:groupId/users</code>
+              <p>This will return an array containing the details of each member of the group</p>
+              <p>The JSON response packet has the following structure:</p>
+<pre class=".pre-scrollable"><code class="language-json">[
+    {
+        "user": "9c7b6fc8-8ca8-4407-ab23-43639a722fa5",
+        "username": "name1",
+        "admin": true
+    },
+    {
+        "user": "87113434-bad2-4d6a-b982-e0f7b4c68f36",
+        "username": "name2",
+        "admin": false
+    }
+]</code></pre>
+              <p>The returned array will contain a series of elements detailing the members of the group. Each element consists of 3 elements, <code>user</code> details the UUID of the user.
+              <code>username</code> gives the name of the specified member. Finally, <code>admin</code> is a boolean representing whether this user is the creator of the group or not.</p>
+            </section>
+
+            <section id="group-preferences">
+              <h4>Group Preferences</h4>
+              <code><b>GET</b> /api_v1/group/:groupId/preferences</code>
+              <p>This will return an array containing each preference from every member of the group.</p>
+              <p>The returned JSON will be of the following form:</p>
+<pre class=".pre-scrollable"><code class="language-json">[
+    {
+        "user": "4662b5d0-75d0-4131-bc03-c8d6e196d0d5",
+        "preference": {
+            "cafe": {
+                "name": "Wordsmith's Cafe",
+                "id": "124012048721084721"
+            },
+            "times": [
+                {
+                    "from": "date-object",
+                    "to": "date-object"
+                }
+            ]
+        }
+    }
+]</code></pre>
+              <p>The returned array consists of a series of objects that map users to a single preference, which is a cafe (the name is given as well as its UUID), as well as a list of preference times each which consists of two JSONified Date objects.</p>
+
+            </section>
+
+          </section>
+
+          <hr class="divider">
+
+          <section id="cafes">
+            <h3>Cafe</h3>
+
+          </section>
+
+        </section>
+        <hr class="divider">
+      </div>
+    </div>
+	
+  </div>
+  <!-- Content end --> 
+  
+  <!-- Footer
+  ============================ -->
+  <footer id="footer" class="section bg-dark footer-text-light">
+    <div class="container">
+      <ul class="social-icons social-icons-lg social-icons-muted justify-content-center mb-3">
+        <li><a data-toggle="tooltip" href="https://twitter.com/harnishdesign/" target="_blank" title="" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
+        <li><a data-toggle="tooltip" href="http://www.facebook.com/harnishdesign/" target="_blank" title="" data-original-title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a data-toggle="tooltip" href="http://www.dribbble.com/harnishdesign/" target="_blank" title="" data-original-title="Dribbble"><i class="fab fa-dribbble"></i></a></li>
+        <li><a data-toggle="tooltip" href="http://www.github.com/" target="_blank" title="" data-original-title="GitHub"><i class="fab fa-github"></i></a></li>
+      </ul>
+      <p class="text-center">Copyright &copy; 2020 <a href="http://www.harnishdesign.net/idocs-one-page-documentation-html-template/">iDocs</a>. All Rights Reserved.</p>
+	  <p class="text-2 text-center mb-0">Design &amp; Develop by <a class="btn-link" target="_blank" href="http://www.harnishdesign.net/">HarnishDesign</a>.</p>
+    </div>
+  </footer>
+  <!-- Footer end -->
+  
+</div>
+<!-- Document Wrapper end --> 
+
+<!-- Back To Top --> 
+<a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i class="fa fa-chevron-up"></i></a> 
+
+<!-- JavaScript
+============================ -->
+<script src="assets/vendor/jquery/jquery.min.js"></script> 
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<!-- Highlight JS -->
+<script src="assets/vendor/highlight.js/highlight.min.js"></script> 
+<!-- Easing --> 
+<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script> 
+<!-- Magnific Popup --> 
+<script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script> 
+<!-- Custom Script -->
+<script src="assets/js/theme.js"></script>
+</body>
+</html>
