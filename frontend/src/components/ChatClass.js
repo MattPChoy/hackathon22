@@ -9,12 +9,6 @@ export default class Chat extends React.Component {
     constructor(props) {
         super(props)
         io = io ?? socketio.connect()
-        setInterval(() => {
-            this.send({msg: 'Message :)', groupId: this.props.groupId, userId: this.props.userId})
-        }, 5000)
-        this.onMessageReceive((userId, message) => {
-            console.log(`${userId}: ${message}`)
-        })
     }
 
     render() {
