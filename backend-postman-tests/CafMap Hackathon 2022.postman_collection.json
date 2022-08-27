@@ -1,0 +1,332 @@
+{
+	"info": {
+		"_postman_id": "61d8ec4c-25c5-48b6-904d-8f500d4e98d3",
+		"name": "CafMap Hackathon 2022",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18459338"
+	},
+	"item": [
+		{
+			"name": "User Operations",
+			"item": [
+				{
+					"name": "Join Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    pm.environment.set('user_id', pm.response.json().userId);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api_v1/group/{{group_id}}/join_as?name=kaleb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api_v1",
+								"group",
+								"{{group_id}}",
+								"join_as"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "kaleb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Group",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    pm.environment.set('group_id', pm.response.json().groupId)\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api_v1/group/create?name=coffee group&as_user=kaleb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api_v1",
+								"group",
+								"create"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "coffee group"
+								},
+								{
+									"key": "as_user",
+									"value": "kaleb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api_v1/group/{{group_id}}/{{user_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api_v1",
+								"group",
+								"{{group_id}}",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/test_api/group",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"test_api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Last Created Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/test_api/group/{{group_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"test_api",
+								"group",
+								"{{group_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Preferences of Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api_v1/group/{{group_id}}/preferences",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api_v1",
+								"group",
+								"{{group_id}}",
+								"preferences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Preferences of Last Member added to Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api_v1/group/{{group_id}}/{{user_id}}/preferences",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api_v1",
+								"group",
+								"{{group_id}}",
+								"{{user_id}}",
+								"preferences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new preference to last user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cafe\": {\r\n        \"name\": \"Wordsmith's Cafe\",\r\n        \"id\": \"124012048721084721\"\r\n    },\r\n    \"times\": [\r\n        {\r\n            \"from\": \"date-object\",\r\n            \"to\": \"date-object\" \r\n        },\r\n        {\r\n            \"from\": \"date-object\",\r\n            \"to\": \"date-object\" \r\n        },\r\n        {\r\n            \"from\": \"date-object\",\r\n            \"to\": \"date-object\" \r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api_v1/group/{{group_id}}/{{user_id}}/preferences/add",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api_v1",
+								"group",
+								"{{group_id}}",
+								"{{user_id}}",
+								"preferences",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users of Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api_v1/group/{{group_id}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api_v1",
+								"group",
+								"{{group_id}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cafe Operations",
+			"item": [
+				{
+					"name": "Get Cafe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api_v1/cafe/{{cafe_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api_v1",
+								"cafe",
+								"{{cafe_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Cafe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    pm.environment.set('cafe_id', pm.response.json().cafeId);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"menu\": {\"coffee\": \"$5.99\"},\r\n    \"accessibility\": {\"vegan\": true, \"vegetarian\": true}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api_v1/cafe/create?name=Wordsmith's",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api_v1",
+								"cafe",
+								"create"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Wordsmith's"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
