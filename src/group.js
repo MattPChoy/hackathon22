@@ -61,7 +61,7 @@ router.post('/create', (req, res) => {
     const users = { [userId]: user }
 
     const group = new Group(groupName, users, userId)
-    const chat = new Chat(group.groupId)
+    new Chat(group.groupId)
     group.sync().then(() => {
             res.json(
                 {

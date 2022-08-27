@@ -56,7 +56,7 @@ export default class Selection extends React.Component {
                             axios.post(
                                 `/api_v1/group/create?name=${this.state.mapName}&as_user=${this.state.userName}`
                             ).then((response) => {
-                                this.props.history.push("/invite", response.data)
+                                this.props.history.push("/invite", { group: response.data, userId: response.data.admin.userId })
                             }).catch((err) => {
                                 console.error(err)
                             })

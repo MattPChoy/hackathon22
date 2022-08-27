@@ -50,7 +50,7 @@ export default class Selection extends React.Component {
                     let groupData = (await axios.get(`/api_v1/group/invite/${this.state.joinCode}`)).data
                     let newUser = (await axios.post(`/api_v1/group/${groupData.groupId}/join_as?name=${this.state.userName}`)).data
                     groupData = (await axios.get(`/api_v1/group/invite/${this.state.joinCode}`)).data
-                    this.props.history.push('/invite', groupData)
+                    this.props.history.push('/invite', { group: groupData, userId: newUser.userId } )
                 }}>Join Map</Button>
                 <NavLink to='/create'><Button variant="outlined" id="create-btn">No Code? Create Event</Button></NavLink>
             </Stack>
