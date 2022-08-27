@@ -49,6 +49,9 @@ export default class Selection extends React.Component {
                         <h3>Your Name:</h3>
                         <TextField id="your-name" value={this.state.userName} onChange={evt => this.updateUserName(evt)} label="User Name" variant="filled"/>
                         <Button onClick={(event) => {
+                            //TODO add if statement to check whether this.state.mapName === "Give Up" and this.state.userName === "Rick" then redirect through browser to youtube.com da linkey
+
+                            //Leave axios post request here
                             axios.post(
                                 `/api_v1/group/create?name=${this.state.mapName}&as_user=${this.state.userName}`
                             ).then((response) => {
