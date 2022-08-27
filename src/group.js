@@ -7,6 +7,8 @@ const group_test_router = express.Router()
 
 const { User, Group, groups } = require('./model/Group')()
 
+const { Chat } = require('./chat')
+
 group_test_router.get('/', (req, res) => {
     res.json(groups)
 })
@@ -44,6 +46,7 @@ router.post('/create', (req, res) => {
     const users = { [userId]: user }
 
     const group = new Group(groupName, users, userId)
+    const chat = new Chat(group.groupId)
     group.sync().then(() => {
             res.json(
                 {

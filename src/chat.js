@@ -1,16 +1,17 @@
-const io = require('socket.io')()
+let io = require('socket.io')()
+
+const chats = {}
 
 const initialize = (server) => {
     io.on('connection', (socket) => {
         socket.emit('Hello from the server')
         socket.on('chat message', messagePacket => {
             const {msg, groupId, userId} = messagePacket
-            chats[groupId].send({msg, userId})
+            chats[groupId].sendMessage({msg, userId})
         })
     })
+    io.listen(server)
 }
-
-const chats = {}
 
 class Chat {
     constructor(
@@ -23,7 +24,7 @@ class Chat {
     }
 
     sendMessage = (msg) => {
-        io.to(this.groupId).broadcast('chat message', msg)
+        io.to(this.groupId).emit('chat message', msg)
     }
 
     addUser = (userId, username, socket) => {
@@ -32,4 +33,4 @@ class Chat {
     }
 }
 
-module.exports = { initialize }
+module.exports = { Chat, initialize }

@@ -26,7 +26,7 @@ export default class DataScreen extends React.Component {
                 <Link mapName={this.props.location.state.groupName} link={'TODO'}/>
                 <MapWindow/>
             </Stack>
-            <ChatWindow/>
+            <ChatWindow groupId={this.props.location.state.groupId} userId={this.props.location.state.admin.userId}/>
         </Stack>
         )
     }
