@@ -25,13 +25,19 @@ a {
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
+  width: 100vw;
   font-size: calc(10px + 2vmin);
   color: white;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#centre-content-main-page {
+  position: absolute;
+  left: 50%;
+  top: 33%;
+  transform: translate(-50%, -50%);
 }
 
 .App-link {

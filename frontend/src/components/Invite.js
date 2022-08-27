@@ -11,6 +11,8 @@ import { MapsComponent, LayersDirective, LayerDirective, Zoom, Inject } from '@s
 
 import socketio from "socket.io-client"
 import axios from "axios"
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 
 export default class DataScreen extends React.Component {
     constructor(props) {
@@ -26,7 +28,7 @@ export default class DataScreen extends React.Component {
         newUsers[userId] = {name}
         this.setState({
             users: newUsers,
-            chat: this.state.chat
+            chat: this.state.chat,
         })
     }
 
@@ -74,6 +76,26 @@ export default class DataScreen extends React.Component {
         })
     }
 
+    updateUsersAddLocation = (userId, location) => {
+        let newLocation = {...this.state.users}
+        newLocation[userId] = {location}
+        this.setState({
+            locations: newLocation,
+            chat: this.state.chat,
+            users: this.props.location.state.group.users
+        })
+    }
+
+    updateUsersRemoveLocation = (userId, location) => {
+        let newLocation = {...this.state.users}
+        delete newLocation[userId]
+        this.setState({
+            locations: newLocation,
+            chat: this.state.chat,
+            users: this.props.location.state.group.users
+        })
+    }
+
     componentWillUnmount() {
         this.io.emit('user disconnected', {
             userId: this.props.location.state.userId,
@@ -91,6 +113,9 @@ export default class DataScreen extends React.Component {
             <Stack direction="column" spacing={2}>
                 <Link mapName={this.props.location.state.group.groupName} link={this.props.location.state.group.inviteLink}/>
                 <MapWindow/>
+                <Box component="form">
+                    <TextField id="Location" value={this.state.Location} onChange={evt => this.updateUsersAddLocation(evt)} label="Add a Location" variant="filled"/>
+                </Box>
             </Stack>
             <ChatWindow messages={this.state.chat} msgInterface={{ send: this.send }}/>
         </Stack>
