@@ -2,8 +2,10 @@
     color:lightgray;
 }
 
-Avatar {
-  font-weight: bold;
+
+a {
+  text-decoration: none;
+
 }
 
 .App {

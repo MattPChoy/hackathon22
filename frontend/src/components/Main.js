@@ -6,7 +6,10 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import MapWindow from "./MapWindow";
 import * as ReactDOM from "react-dom";
+import coffee from '.././assets/images/coffee.png'
 import { MapsComponent, LayersDirective, LayerDirective, Zoom, Inject } from '@syncfusion/ej2-react-maps';
+
+import { NavLink } from 'react-router-dom'
 
 export default class DataScreen extends React.Component {
     constructor(props) {
@@ -16,7 +19,7 @@ export default class DataScreen extends React.Component {
         return (
             <Stack direction="Column" spacing={4}>
                 <h1>Welcome to CafMap.com</h1>
-                <Button>Click Here to Begin</Button>
+                <NavLink to="/select"><Button><img src={coffee} alt="Coffee logo" width={"20%"} height={"20%"}/></Button></NavLink>
                 <MapWindow/>
             </Stack>
         )
