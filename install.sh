@@ -15,7 +15,7 @@ fi
 
 npm i || exit
 cd ./frontend || exit
-npm i || exit
+npm i --legacy-peer-deps || exit
 npm run build || exit
 cd ../
 touch .env
