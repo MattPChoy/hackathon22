@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function ShopView() {
+export default function ShopView(props) {
     return (
         <div style = {{background:'purple'}}>
-            <p>Shop Name</p>
-            <p>Rating | Price</p>
+            <p>{props.name}</p>
+            <p>Rating: {props.rating} | Price: ${props.price}</p>
         </div>
     )
 }

@@ -9,17 +9,22 @@ import ChatWindow from "./MapComp/ChatWindow"
 import * as ReactDOM from "react-dom";
 import { MapsComponent, LayersDirective, LayerDirective, Zoom, Inject } from '@syncfusion/ej2-react-maps';
 
+import { NavLink } from 'react-router-dom'
+
 import socketio from "socket.io-client"
 import axios from "axios"
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import Shops from './MapComp/Shops'
 
 export default class DataScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            location: {},
             users: this.props.location.state.group.users,
-            chat: []
+            chat: [],
+            built: false
         }
     }
 
@@ -27,8 +32,10 @@ export default class DataScreen extends React.Component {
         let newUsers = {...this.state.users}
         newUsers[userId] = {name}
         this.setState({
+            locations: this.state.location,
             users: newUsers,
             chat: this.state.chat,
+            built: false
         })
     }
 
@@ -36,8 +43,10 @@ export default class DataScreen extends React.Component {
         let newUsers = {...this.state.users}
         delete newUsers[userId]
         this.setState({
+            locations: this.state.location,
             users: newUsers,
-            chat: this.state.chat
+            chat: this.state.chat,
+            built: false
         })
         axios.delete(`/api_v1/group/${this.props.location.state.group.groupId}/${this.props.location.state.userId}`)
     }
@@ -46,8 +55,10 @@ export default class DataScreen extends React.Component {
         let newChat = [...this.state.chat]
         newChat.push({username, message})
         this.setState({
+            locations: this.state.location,
             users: this.state.users,
-            chat: newChat
+            chat: newChat,
+            built: false
         })
     }
 
@@ -82,7 +93,8 @@ export default class DataScreen extends React.Component {
         this.setState({
             locations: newLocation,
             chat: this.state.chat,
-            users: this.props.location.state.group.users
+            users: this.props.location.state.group.users,
+            built: false
         })
     }
 
@@ -92,7 +104,17 @@ export default class DataScreen extends React.Component {
         this.setState({
             locations: newLocation,
             chat: this.state.chat,
-            users: this.props.location.state.group.users
+            users: this.props.location.state.group.users,
+            built: false
+        })
+    }
+
+    updateBuilt = () => {
+        this.setState({
+            locations: this.state.location,
+            users: this.state.users,
+            chat: this.state.chat,
+            built: true
         })
     }
 
@@ -106,19 +128,20 @@ export default class DataScreen extends React.Component {
     render() {
         return (
             <Stack direction="row" spacing={2}>
-            <Stack direction="column" spacing={2}>
-                <UserList users={this.state.users}/>
-                <Button>Build a CafMap</Button>
+                <ChatWindow messages={this.state.chat} msgInterface={{ send: this.send }}/>
+                <Stack direction="column" spacing={2}>
+                    { this.state.built ? <Shops></Shops> : null }
+                    { !this.state.built ? <UserList style={{display: (this.state.built) ? 'inherit' : 'none'}} users={this.state.users}/> : null }
+                    { !this.state.built ? <Button onClick={e => this.updateBuilt()}>Build a CafMap</Button> : null }
+                </Stack>
+                <Stack direction="column" spacing={2}>
+                    <Link mapName={this.props.location.state.group.groupName} link={this.props.location.state.group.inviteLink}/>
+                    <MapWindow id='super-cool-map-window'/>
+                    <Box component="form">
+                        <TextField id="Location" value={this.state.Location} onChange={evt => this.updateUsersAddLocation(evt)} label="Add a Location" variant="filled"/>
+                    </Box>
+                </Stack>
             </Stack>
-            <Stack direction="column" spacing={2}>
-                <Link mapName={this.props.location.state.group.groupName} link={this.props.location.state.group.inviteLink}/>
-                <MapWindow/>
-                <Box component="form">
-                    <TextField id="Location" value={this.state.Location} onChange={evt => this.updateUsersAddLocation(evt)} label="Add a Location" variant="filled"/>
-                </Box>
-            </Stack>
-            <ChatWindow messages={this.state.chat} msgInterface={{ send: this.send }}/>
-        </Stack>
         )
     }
 

@@ -34,6 +34,7 @@ function App() {
                       <Route path="/select" component={Selection}/>
                       <Route path="/create" component={Create}/>
                       <Route path='/invite' component={Invite}></Route>
+                      <Route path='/map' component={Map}></Route>
                   </Switch>
               </header>
           </div>
