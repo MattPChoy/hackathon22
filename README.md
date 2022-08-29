@@ -7,3 +7,6 @@ only have this option present when the application is running in development mod
 the file does not contain a key ``TEST_API`` then the server will not accept requests on the ``/test_api``API.
 
 Go to ./docs/api.html for more information about the backend server and its API.
+
+# Google Maps Window
+The Google Maps window was based on [this project](https://www.youtube.com/watch?v=wfH-W7oXEo8)
