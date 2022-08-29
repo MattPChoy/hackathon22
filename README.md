@@ -10,3 +10,12 @@ Go to ./docs/api.html for more information about the backend server and its API.
 
 # Google Maps Window
 The Google Maps window was based on [this project](https://www.youtube.com/watch?v=wfH-W7oXEo8)
+
+
+# Server Setup
+```bash
+git clone https://github.com/MattPChoy/hackathon22.git cafmap
+cd cafmap
+./install.sh <mongo database srv link> # Set up server after cloning repository
+sudo node index.js listen 80           # Run server
+```
